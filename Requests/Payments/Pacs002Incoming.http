@@ -1,0 +1,46 @@
+@host=http://localhost:5286
+POST {{host}}/payments
+Content-Type: application/json
+
+{
+    "Version":"02",
+    "ApplicationId":"HUBIP",
+    "LocalAddressType":"B",
+    "LocalAddress":"SIAUITM1",
+    "RemoteAddressType":"B",
+    "RemoteAddress":"IPSTFRP0",
+    "Service":"RT1",
+    "ACH":"RT1",
+    "SettlementMethod":null,
+    "FormatType":"JSN",
+    "OperationCode":"NOTIFICATION",
+    "MessageType":"PACS.002",
+    "CorrelationKey":"62CA096210F74EB59662AB7D6B",
+    "CreationTimestamp":"2024-04-02T10:40:47.258Z",
+    "Signature":null,
+    "ReturnCode": "testing",
+    "Data":
+    {
+        "Direction": "REC",
+        "MsgId": "2024-04-02T10:40:47.228382-69087654",
+        "OrgnlMsgId": "2024040200057399",
+        "TransactionId": "5034000573994093480160011700IT",
+        "OrgnlMsgNmId": "pacs.008.001.08",
+        "IntrBkSttlmDt": null,
+        "LclInstrm": "INST",
+        "StsId": "2024-04-02T12:40:47.224881-44458946",
+        "StsRsnInf": null,
+        "GrpSts":"ACCP",
+        "ReasonCd": null,
+        "OrgnlInstrId": null,
+        "OrgnlEndToEndId":"NOTPROVIDED",
+        "OrgnlTxId":"5034000573994093480160011700IT",
+        "OrgnlAccptncDtTm": "2024-04-02T12:40:43.599+02:00",
+        "OrgnlTxRefBIC":"BAPPIT22XXX",
+        "OrgnIntrBkSttlmAmt": null,
+        "PACS002":
+        {
+            "MessaggioPacs002":"<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10\">\n <FIToFIPmtStsRpt>\n <GrpHdr>\n <MsgId>2024-04-02T12:40:47.228382-69087654</MsgId>\n <CreDtTm>2024-04-02T12:40:47.228+02:00</CreDtTm> ... </FIToFIPmtStsRpt>\n</Document>"
+        }
+    }
+}

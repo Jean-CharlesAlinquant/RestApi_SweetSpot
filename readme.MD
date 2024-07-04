@@ -43,3 +43,8 @@ dotnet sln add **/**.csproj
 - Domain
 - Persistence
 - Services
+
+## Clean Code - Nuget packages
+
+- dotnet add package StyleCop.Analyzers
+- dotnet add package SonarAnalyzer.CSharp

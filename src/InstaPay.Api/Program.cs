@@ -1,11 +1,13 @@
+using InstaPay.Api.Domain;
+using InstaPay.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
-{
-    // configure services (DI)
-}
+builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DataFieldConverter());
+                });
 
 var app = builder.Build();
-{
-    // configure request pipeline
-}
-
-app.Run();
+app.MapControllers();
+await app.RunAsync();
