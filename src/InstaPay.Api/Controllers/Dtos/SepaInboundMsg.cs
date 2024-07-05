@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace InstaPay.Api.Domain.Models;
+namespace InstaPay.Api.Controllers.Dtos;
 
 public record SepaInboundMsg
 {

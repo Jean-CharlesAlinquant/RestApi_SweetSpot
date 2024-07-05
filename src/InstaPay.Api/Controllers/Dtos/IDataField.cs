@@ -1,4 +1,4 @@
-namespace InstaPay.Api.Domain.Models;
+namespace InstaPay.Api.Controllers.Dtos;
 
 public interface IDataField
 {

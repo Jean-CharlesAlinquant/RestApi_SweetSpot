@@ -1,4 +1,4 @@
-using InstaPay.Api.Domain;
+using InstaPay.Api.Infrastructure.Converters;
 using InstaPay.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);

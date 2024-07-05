@@ -1,9 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using InstaPay.Api.Controllers.Dtos;
 
-using InstaPay.Api.Domain.Models;
-
-namespace InstaPay.Api.Domain;
+namespace InstaPay.Api.Infrastructure.Converters;
 
 public class DataFieldConverter : JsonConverter<IDataField>
 {

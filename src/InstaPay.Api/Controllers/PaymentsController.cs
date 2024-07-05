@@ -1,5 +1,4 @@
-using InstaPay.Api.Domain.Models;
-
+using InstaPay.Api.Controllers.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InstaPay.Api.Controllers;
