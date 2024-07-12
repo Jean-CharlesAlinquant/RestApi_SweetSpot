@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record Pacs002DataField : IDataField
+public record Pacs002DataDto : IDataDto
 {
     [Required]
     [StringLength(3)]
@@ -60,5 +60,5 @@ public record Pacs002DataField : IDataField
 
     public decimal? OrgnIntrBkSttlmAmt { get; init; }
 
-    required public Pacs002 Pacs002 { get; init; }
+    required public Pacs002EmbeddedContentDto Pacs002 { get; init; }
 }

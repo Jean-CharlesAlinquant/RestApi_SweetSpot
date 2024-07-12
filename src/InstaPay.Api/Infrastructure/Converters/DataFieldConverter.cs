@@ -4,20 +4,20 @@ using InstaPay.Api.Controllers.Dtos;
 
 namespace InstaPay.Api.Infrastructure.Converters;
 
-public class DataFieldConverter : JsonConverter<IDataField>
+public class DataFieldConverter : JsonConverter<IDataDto>
 {
-    public override IDataField? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override IDataDto? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         using JsonDocument document = JsonDocument.ParseValue(ref reader);
         JsonElement root = document.RootElement;
 
         if (root.TryGetProperty("PACS008", out _))
         {
-            return JsonSerializer.Deserialize<Pacs008DataField>(root.GetRawText(), options);
+            return JsonSerializer.Deserialize<Pacs008DataDto>(root.GetRawText(), options);
         }
         else if (root.TryGetProperty("PACS002", out _))
         {
-            return JsonSerializer.Deserialize<Pacs002DataField>(root.GetRawText(), options);
+            return JsonSerializer.Deserialize<Pacs002DataDto>(root.GetRawText(), options);
         }
         else
         {
@@ -25,7 +25,7 @@ public class DataFieldConverter : JsonConverter<IDataField>
         }
     }
 
-    public override void Write(Utf8JsonWriter writer, IDataField value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, IDataDto value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value, value.GetType(), options);
     }

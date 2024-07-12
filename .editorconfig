@@ -176,6 +176,9 @@ csharp_preserve_single_line_statements = true
 # SA1010: Opening square brackets should be spaced correctly
 dotnet_diagnostic.SA1010.severity = none
 
+# S125: Sections of code should not be commented out
+dotnet_diagnostic.S125.severity = none
+
 [*.{cs,vb}]
 
 # Naming rules
@@ -382,6 +385,9 @@ dotnet_diagnostic.SA1200.severity = none
 
 # SA1200: Using directives should be placed correctly
 dotnet_diagnostic.SA1200.severity = none
+
+# SA1309: Field should not begin with an underscore
+dotnet_diagnostic.SA1309.severity = none
 
 # SA1413: Use trailing comma in multi-line initializers
 dotnet_diagnostic.SA1413.severity = none

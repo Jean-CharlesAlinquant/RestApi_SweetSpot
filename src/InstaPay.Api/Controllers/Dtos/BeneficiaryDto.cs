@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record BeneficiaryField
+public record BeneficiaryDto
 {
     [Required]
     [StringLength(70)]
@@ -21,7 +21,7 @@ public record BeneficiaryField
     [StringLength(50)]
     required public string BeneficiaryBic { get; init; }
 
-    public PostalAddress? BeneficiaryPostalAddress { get; init; }
+    public PostalAddressDto? BeneficiaryPostalAddress { get; init; }
 
     [StringLength(140)]
     public string? BeneficiaryAddress { get; init; }

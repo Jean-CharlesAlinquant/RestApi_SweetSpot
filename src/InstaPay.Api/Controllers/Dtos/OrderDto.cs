@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record OrderField
+public record OrderDto
 {
     [Required]
     [StringLength(7)]
@@ -20,7 +20,7 @@ public record OrderField
     [StringLength(35)]
     public string? OriginatorCountry { get; init; }
 
-    public PostalAddress? OriginatorPostalAddress { get; init; }
+    public PostalAddressDto? OriginatorPostalAddress { get; init; }
 
     [StringLength(40)]
     public string? OriginatorAddress { get; init; }

@@ -1,6 +1,6 @@
 namespace InstaPay.Api.Controllers.Dtos;
 
-public interface IDataField
+public interface IDataDto
 {
     // Future members can be added here
 }

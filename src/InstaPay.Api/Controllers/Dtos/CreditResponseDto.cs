@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record CreditResponse // CreditRequest - Response
+public record CreditResponseDto // CreditRequest - Response
 {
     [Required]
     required public string CreationTimestamp { get; init; }
@@ -41,5 +41,5 @@ public record CreditResponse // CreditRequest - Response
     required public string PaymentStatus { get; init; }
 
     // For testing
-    public IDataField? Data { get; init; }
+    public IDataDto? Data { get; init; }
 }

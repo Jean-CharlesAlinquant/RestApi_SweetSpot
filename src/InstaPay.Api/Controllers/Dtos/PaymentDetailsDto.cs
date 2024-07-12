@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record PaymentDetails
+public record PaymentDetailsDto
 {
     [Required]
     required public decimal Amount { get; init; }

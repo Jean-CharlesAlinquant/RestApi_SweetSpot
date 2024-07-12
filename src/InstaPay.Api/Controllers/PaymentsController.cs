@@ -1,14 +1,23 @@
 using InstaPay.Api.Controllers.Dtos;
+using InstaPay.Api.Domain.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace InstaPay.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PaymentsController() : ControllerBase
+public class PaymentsController : ControllerBase
 {
+    private readonly IPaymentProcessingService _paymentProcessingService;
+
+    public PaymentsController(IPaymentProcessingService paymentProcessingService)
+    {
+        _paymentProcessingService = paymentProcessingService;
+    }
+
     [HttpPost]
-    public IActionResult ProcessSepaMessage([FromBody] SepaInboundMsg request)
+    public async Task<IActionResult> ProcessSepaMessage([FromBody] SepaInboundMessageDto request)
     {
         if (request == null)
         {
@@ -20,48 +29,32 @@ public class PaymentsController() : ControllerBase
             return BadRequest("MessageType is required");
         }
 
-        switch (request.MessageType)
+        try
         {
-            case "PACS.002":
-                if (request.Data is Pacs002DataField)
-                {
-                    var response = new CreditResponse
-                    {
-                        CreationTimestamp = request.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
-                        CorrelationKey = request.CorrelationKey,
-                        MessageType = request.MessageType,
-                        ACH = request.ACH,
-                        ReturnCode = request.ReturnCode,
-                        PaymentStatus = request.ReturnCode == "00000000" ? "ACCEPTED" : "REJECTED",
-                        Data = request.Data
-                    };
+            CreditResponseDto response;
+            switch (request.MessageType)
+            {
+                case "PACS.002":
+                    response = await _paymentProcessingService.ProcessPacs002Async(request);
+                    break;
 
-                    return Ok(response);
-                }
+                case "PACS.008":
+                    response = await _paymentProcessingService.ProcessPacs008Async(request);
+                    break;
 
-                return BadRequest("Invalid data for PACS.002");
+                default:
+                    return Problem("Unsupported MessageType");
+            }
 
-            case "PACS.008":
-                if (request.Data is Pacs008DataField)
-                {
-                    var response = new CreditResponse
-                    {
-                        CreationTimestamp = request.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
-                        CorrelationKey = request.CorrelationKey,
-                        MessageType = request.MessageType,
-                        ACH = request.ACH,
-                        ReturnCode = request.ReturnCode,
-                        PaymentStatus = request.ReturnCode == "00000000" ? "ACCEPTED" : "REJECTED",
-                        Data = request.Data
-                    };
-
-                    return Ok(response);
-                }
-
-                return BadRequest("Invalid data for PACS.008");
-
-            default:
-                return Problem("Unsupported MessageType");
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
         }
     }
 }

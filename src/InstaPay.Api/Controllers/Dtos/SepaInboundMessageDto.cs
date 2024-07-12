@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record SepaInboundMsg
+public record SepaInboundMessageDto
 {
     [Required]
     [StringLength(3)]
@@ -61,5 +61,5 @@ public record SepaInboundMsg
     required public string ReturnCode { get; init; }
 
     [Required]
-    required public IDataField Data { get; init; }
+    required public IDataDto Data { get; init; }
 }

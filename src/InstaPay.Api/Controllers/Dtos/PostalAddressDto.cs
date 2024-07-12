@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InstaPay.Api.Controllers.Dtos;
 
-public record PostalAddress
+public record PostalAddressDto
 {
     [StringLength(70)]
     public string? Department { get; init; }

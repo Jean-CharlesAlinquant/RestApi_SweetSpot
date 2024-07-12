@@ -1,0 +1,25 @@
+# docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
+# docker-compose up -d
+
+version: "4.29"
+
+services:
+  cosmosdb:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+    container_name: cosmosdb-emulator
+    environment:
+      - AZURE_COSMOS_EMULATOR_PARTITION_COUNT = 2
+      - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE = true
+      - AZURE_COSMOS_EMULATOR_IP_ADDRESS_OVERRIDE = 127.0.0.1
+    ports:
+      - 8081:8081
+      - 10250:10250
+      - 10251:10251
+      - 10252:10252
+      - 10253:10253
+      - 10254:10254
+    volumes:
+      - ./cosmosdb-data:/data
+
+volumes:
+  cosmosdb-data:
